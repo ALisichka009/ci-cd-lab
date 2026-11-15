@@ -29,7 +29,7 @@ def test_get_unexisted_user():
      'name': 'new_user',
      'email': 'newuser@mail.com',
     }
-    response = client.get("/api/v1/user", json-new_user)
+    response = client.get("/api/v1/user", json=new_user)
     assert response.status_code == 201
     assert isinstance(response.json(), int)
 

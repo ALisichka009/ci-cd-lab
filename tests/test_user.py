@@ -40,7 +40,7 @@ def test_create_user_with_valid_email():
     }
     response = client.post("/api/v1/user", json=duplicate_user)
     assert response.status_code == 409
-    assert response.json() == {"detail": "User with this email alrady exists"}
+    assert response.json() == {"detail": "User with this email already exists"}
 
 def test_delete_user():
     email_to_delete = users[0]['email']

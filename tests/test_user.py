@@ -27,22 +27,22 @@ def test_get_existed_user():
 def test_get_unexisted_user():
     new_user = {
      'name': 'new_user',
-     'email': 'newuser@mail.com',
+     'email': 'new.user@mail.com',
     }
-    response = client.get("/api/v1/user", json-new_user)
+    response = client.post("/api/v1/user", json=new_user)
     assert response.status_code == 201
     assert isinstance(response.json(), int)
 
 def test_create_user_with_valid_email():
     duplicate_user = {
      'name': 'Duplicate_User',
-     'email': user[0]['email'],
+     'email': users[0]['email'],
     }
-    response = client.post("/api/v1/user", json-duplicate_user)
+    response = client.post("/api/v1/user", json=duplicate_user)
     assert response.status_code == 409
-    assert response.json() == {"detail": "User with this email alrady exists"}
+    assert response.json() == {"detail": "User with this email already exists"}
 
 def test_delete_user():
-    email_to_delete = user[0]['email']
+    email_to_delete = users[0]['email']
     response = client.delete("/api/v1/user", params={'email': email_to_delete})
     assert response.status_code == 204
